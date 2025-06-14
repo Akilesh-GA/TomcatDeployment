@@ -20,9 +20,14 @@ pipeline {
         }
         stage('Restart Tomcat') {
             steps {
-                bat '"D:\\Apache\\Tomcat 9\\apache-tomcat-9.0.106\\bin\\shutdown.bat"'
+                script {
+                    def shutdownStatus = bat(script: '"%CATALINA_HOME%\\bin\\shutdown.bat"', returnStatus: true)
+                    if (shutdownStatus != 0) {
+                        echo "Tomcat may not be running. Shutdown returned exit code: ${shutdownStatus}"
+                    }
+                }
                 sleep time: 3, unit: 'SECONDS'
-                bat '"D:\\Apache\\Tomcat 9\\apache-tomcat-9.0.106\\bin\\startup.bat"'
+                bat '"%CATALINA_HOME%\\bin\\startup.bat"'
             }
         }
     }
@@ -31,7 +36,7 @@ pipeline {
             echo '✅ Pipeline Built Successfully !!'
         }
         failure {
-            echo '❌ Pipeline Built Failed !'
+            echo '❌ Pipeline Build Failed !'
         }
     }
 }
