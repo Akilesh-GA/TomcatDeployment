@@ -3,6 +3,9 @@ pipeline {
     options {
         timestamps()
     }
+    tools {
+        maven 'Maven 3.9.10'
+    }
     stages {
         stage('Checkout') {
             steps {
