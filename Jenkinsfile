@@ -3,6 +3,9 @@ pipeline {
     options {
         timestamps()
     }
+    tools {
+        maven 'MAVEN_HOME'
+    }
     environment {
         TOMCAT_WEBAPPS = 'D:\\Apache\\Tomcat 9\\apache-tomcat-9.0.106\\webapps'
         CATALINA_HOME = 'D:\\Apache\\Tomcat 9\\apache-tomcat-9.0.106'
