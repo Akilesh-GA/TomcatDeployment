@@ -13,11 +13,19 @@ pipeline {
                 git url: 'https://github.com/Akilesh-GA/TomcatDeployment.git', branch: 'main'
             }
         }
-        stage('Copy WAR to Tomcat') {
+
+        stage('Build WAR with Maven') {
+            steps {
+                bat 'mvn clean package'
+            }
+        }
+
+        stage('Deploy WAR to Tomcat') {
             steps {
                 bat 'copy target\\*.war "%TOMCAT_WEBAPPS%\\MyApp.war"'
             }
         }
+
         stage('Restart Tomcat') {
             steps {
                 script {
@@ -33,10 +41,10 @@ pipeline {
     }
     post {
         success {
-            echo '✅ Pipeline Built Successfully !!'
+            echo '✅ Pipeline Built and Deployed Successfully!'
         }
         failure {
-            echo '❌ Pipeline Build Failed !'
+            echo '❌ Pipeline Failed!'
         }
     }
 }
