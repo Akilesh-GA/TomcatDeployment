@@ -12,11 +12,6 @@ pipeline {
                 git url: 'https://github.com/Akilesh-GA/TomcatDeployment.git', branch: 'main'
             }
         }
-        stage('Build') {
-            steps {
-                bat 'mvn clean package'
-            }
-        }
         stage('Copy WAR to Tomcat') {
             steps {
                 bat 'copy target\\*.war "%TOMCAT_WEBAPPS%\\MyApp.war"'
