@@ -4,18 +4,44 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.akilesh</groupId>
+    <groupId>com</groupId>
     <artifactId>MyApp</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
     <name>MyApp</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source> <!-- or use 17 or 21 depending on JDK -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <finalName>MyApp</finalName>
+        <plugins>
+            <!-- Compiler plugin to use appropriate JDK -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source> <!-- Change to 21 if using JDK 21 -->
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- WAR plugin to package the webapp correctly -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml> <!-- if using annotations like @WebServlet -->
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>
-        <!-- Example: servlet API -->
+        <!-- Provided by Tomcat server -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
