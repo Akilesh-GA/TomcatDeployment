@@ -3,8 +3,8 @@ pipeline {
     options {
         timestamps()
     }
-    tools {
-        maven 'MAVEN_HOME'
+    environment {
+        TOMCAT_WEBAPPS = 'D:\\Apache\\Tomcat 9\\apache-tomcat-9.0.106\\webapps'
     }
     stages {
         stage('Checkout') {
@@ -17,9 +17,9 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-        stage('Archive') {
+        stage('Copy WAR to Tomcat') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                bat 'copy target\\*.war "%TOMCAT_WEBAPPS%\\MyApp.war"'
             }
         }
     }
