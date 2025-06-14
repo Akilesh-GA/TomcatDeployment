@@ -4,7 +4,7 @@ pipeline {
         timestamps()
     }
     tools {
-        maven 'Maven 3.9.10'
+        maven 'MAVEN_HOME'
     }
     stages {
         stage('Checkout') {
