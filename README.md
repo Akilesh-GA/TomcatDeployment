@@ -1,1 +1,1 @@
-<img src = "result/pipeline graph.png" type = "png">
+<img src = "result/pipeline graph.png" type = "png" alt = "pipeline graph" width = 200>
