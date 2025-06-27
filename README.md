@@ -1,1 +1,4 @@
-<img src = "result/pipeline graph.png" type = "png" alt = "pipeline graph" width = 1200>
+<div align="center">
+  <h2>📈 PIPELINE GRAPH</h2>
+  <img src="images/pipeline.png" width="600" alt="Pipeline Graph"/>
+</div>
