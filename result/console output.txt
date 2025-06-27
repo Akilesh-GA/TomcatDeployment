@@ -1,0 +1,222 @@
+Started by an SCM change
+Obtained Jenkinsfile from git https://github.com/Akilesh-GA/TomcatDeployment.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/Akilesh-GA/TomcatDeployment.git # timeout=10
+Fetching upstream changes from https://github.com/Akilesh-GA/TomcatDeployment.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.45.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/Akilesh-GA/TomcatDeployment.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 9f57acc96397cd82ad2f13401d38efd35f02125a (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 9f57acc96397cd82ad2f13401d38efd35f02125a # timeout=10
+Commit message: "initial commit"
+ > git.exe rev-list --no-walk 1fe2f27c146132fc8dfaa9f9c445cc18090739f5 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+[2025-06-14T09:45:04.746Z] Selected Git installation does not exist. Using Default
+[2025-06-14T09:45:04.746Z] The recommended git tool is: NONE
+[2025-06-14T09:45:04.746Z] No credentials specified
+[2025-06-14T09:45:04.746Z]  > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\.git # timeout=10
+[2025-06-14T09:45:04.790Z] Fetching changes from the remote Git repository
+[2025-06-14T09:45:04.802Z]  > git.exe config remote.origin.url https://github.com/Akilesh-GA/TomcatDeployment.git # timeout=10
+[2025-06-14T09:45:04.845Z] Fetching upstream changes from https://github.com/Akilesh-GA/TomcatDeployment.git
+[2025-06-14T09:45:04.845Z]  > git.exe --version # timeout=10
+[2025-06-14T09:45:04.887Z]  > git --version # 'git version 2.45.1.windows.1'
+[2025-06-14T09:45:04.887Z]  > git.exe fetch --tags --force --progress -- https://github.com/Akilesh-GA/TomcatDeployment.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2025-06-14T09:45:05.997Z]  > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+[2025-06-14T09:45:06.042Z] Checking out Revision 9f57acc96397cd82ad2f13401d38efd35f02125a (refs/remotes/origin/main)
+[2025-06-14T09:45:06.042Z]  > git.exe config core.sparsecheckout # timeout=10
+[2025-06-14T09:45:06.082Z]  > git.exe checkout -f 9f57acc96397cd82ad2f13401d38efd35f02125a # timeout=10
+[2025-06-14T09:45:06.133Z]  > git.exe branch -a -v --no-abbrev # timeout=10
+[2025-06-14T09:45:06.179Z]  > git.exe branch -D main # timeout=10
+[2025-06-14T09:45:06.226Z]  > git.exe checkout -b main 9f57acc96397cd82ad2f13401d38efd35f02125a # timeout=10
+[2025-06-14T09:45:06.299Z] Commit message: "initial commit"
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build WAR with Maven)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+[2025-06-14T09:45:06.928Z] 
+[2025-06-14T09:45:06.928Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>mvn clean package 
+[2025-06-14T09:45:08.842Z] [INFO] Scanning for projects...
+[2025-06-14T09:45:08.842Z] [INFO] 
+[2025-06-14T09:45:08.842Z] [INFO] -----------------------------< com:MyApp >------------------------------
+[2025-06-14T09:45:08.842Z] [INFO] Building MyApp 1.0
+[2025-06-14T09:45:08.842Z] [INFO]   from pom.xml
+[2025-06-14T09:45:08.842Z] [INFO] --------------------------------[ war ]---------------------------------
+[2025-06-14T09:45:08.842Z] [INFO] 
+[2025-06-14T09:45:08.842Z] [INFO] --- clean:3.2.0:clean (default-clean) @ MyApp ---
+[2025-06-14T09:45:09.125Z] [INFO] Deleting C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\target
+[2025-06-14T09:45:09.125Z] [INFO] 
+[2025-06-14T09:45:09.125Z] [INFO] --- resources:3.3.1:resources (default-resources) @ MyApp ---
+[2025-06-14T09:45:09.376Z] [INFO] skip non existing resourceDirectory C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\src\main\resources
+[2025-06-14T09:45:09.376Z] [INFO] 
+[2025-06-14T09:45:09.376Z] [INFO] --- compiler:3.8.1:compile (default-compile) @ MyApp ---
+[2025-06-14T09:45:10.751Z] [INFO] Changes detected - recompiling the module!
+[2025-06-14T09:45:10.751Z] [INFO] Compiling 1 source file to C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\target\classes
+[2025-06-14T09:45:11.688Z] [INFO] 
+[2025-06-14T09:45:11.688Z] [INFO] --- resources:3.3.1:testResources (default-testResources) @ MyApp ---
+[2025-06-14T09:45:11.688Z] [INFO] skip non existing resourceDirectory C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\src\test\resources
+[2025-06-14T09:45:11.688Z] [INFO] 
+[2025-06-14T09:45:11.688Z] [INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ MyApp ---
+[2025-06-14T09:45:11.688Z] [INFO] No sources to compile
+[2025-06-14T09:45:11.688Z] [INFO] 
+[2025-06-14T09:45:11.688Z] [INFO] --- surefire:3.2.5:test (default-test) @ MyApp ---
+[2025-06-14T09:45:12.266Z] [INFO] No tests to run.
+[2025-06-14T09:45:12.266Z] [INFO] 
+[2025-06-14T09:45:12.266Z] [INFO] --- war:3.3.2:war (default-war) @ MyApp ---
+[2025-06-14T09:45:14.188Z] [INFO] Packaging webapp
+[2025-06-14T09:45:14.188Z] [INFO] Assembling webapp [MyApp] in [C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\target\MyApp]
+[2025-06-14T09:45:14.188Z] [INFO] Processing war project
+[2025-06-14T09:45:14.188Z] [INFO] Building war: C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment\target\MyApp.war
+[2025-06-14T09:45:14.188Z] [INFO] ------------------------------------------------------------------------
+[2025-06-14T09:45:14.188Z] [INFO] BUILD SUCCESS
+[2025-06-14T09:45:14.188Z] [INFO] ------------------------------------------------------------------------
+[2025-06-14T09:45:14.188Z] [INFO] Total time:  5.578 s
+[2025-06-14T09:45:14.188Z] [INFO] Finished at: 2025-06-14T15:15:14+05:30
+[2025-06-14T09:45:14.188Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy WAR to Tomcat)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+[2025-06-14T09:45:14.938Z] 
+[2025-06-14T09:45:14.939Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>echo Cleaning old deployment... 
+[2025-06-14T09:45:14.939Z] Cleaning old deployment...
+[2025-06-14T09:45:14.939Z] 
+[2025-06-14T09:45:14.939Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>if exist "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\webapps\MyApp.war" del /f /q "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\webapps\MyApp.war" 
+[2025-06-14T09:45:14.939Z] 
+[2025-06-14T09:45:14.939Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>if exist "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\webapps\MyApp" rmdir /s /q "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\webapps\MyApp" 
+[2025-06-14T09:45:14.939Z] 
+[2025-06-14T09:45:14.939Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>echo Copying new WAR... 
+[2025-06-14T09:45:14.939Z] Copying new WAR...
+[2025-06-14T09:45:14.939Z] 
+[2025-06-14T09:45:14.939Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>copy target\MyApp.war "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\webapps\MyApp.war" 
+[2025-06-14T09:45:14.939Z]         1 file(s) copied.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Restart Tomcat)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2025-06-14T09:45:15.458Z] Stopping Tomcat...
+[Pipeline] bat
+[2025-06-14T09:45:15.770Z] 
+[2025-06-14T09:45:15.770Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>"D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\shutdown.bat"
+[2025-06-14T09:45:15.770Z] Using CATALINA_BASE:   "D:\Apache\Tomcat 9\apache-tomcat-9.0.106"
+[2025-06-14T09:45:15.770Z] Using CATALINA_HOME:   "D:\Apache\Tomcat 9\apache-tomcat-9.0.106"
+[2025-06-14T09:45:15.770Z] Using CATALINA_TMPDIR: "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\temp"
+[2025-06-14T09:45:15.770Z] Using JRE_HOME:        "C:\Program Files\Java\jdk-21"
+[2025-06-14T09:45:15.770Z] Using CLASSPATH:       "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\bootstrap.jar;D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\tomcat-juli.jar"
+[2025-06-14T09:45:15.770Z] Using CATALINA_OPTS:   ""
+[2025-06-14T09:45:15.770Z] NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+[2025-06-14T09:45:16.041Z] 14-Jun-2025 15:15:15.926 SEVERE [main] org.apache.catalina.startup.Catalina.stopServer Could not contact [localhost:8005] (base port [8005] and offset [0]). Tomcat may not be running.
+[2025-06-14T09:45:16.041Z] 14-Jun-2025 15:15:15.931 SEVERE [main] org.apache.catalina.startup.Catalina.stopServer Error stopping Catalina
+[2025-06-14T09:45:16.041Z] 	java.net.ConnectException: Connection refused: connect
+[2025-06-14T09:45:16.041Z] 		at java.base/sun.nio.ch.Net.connect0(Native Method)
+[2025-06-14T09:45:16.041Z] 		at java.base/sun.nio.ch.Net.connect(Net.java:589)
+[2025-06-14T09:45:16.041Z] 		at java.base/sun.nio.ch.Net.connect(Net.java:578)
+[2025-06-14T09:45:16.041Z] 		at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.net.Socket.connect(Socket.java:751)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.net.Socket.connect(Socket.java:686)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.net.Socket.<init>(Socket.java:555)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.net.Socket.<init>(Socket.java:324)
+[2025-06-14T09:45:16.041Z] 		at org.apache.catalina.startup.Catalina.stopServer(Catalina.java:633)
+[2025-06-14T09:45:16.041Z] 		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[2025-06-14T09:45:16.041Z] 		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[2025-06-14T09:45:16.041Z] 		at org.apache.catalina.startup.Bootstrap.stopServer(Bootstrap.java:393)
+[2025-06-14T09:45:16.041Z] 		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:482)
+[Pipeline] echo
+[2025-06-14T09:45:16.100Z] Tomcat may not be running. Shutdown returned exit code: 1
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] sleep
+[2025-06-14T09:45:16.187Z] Sleeping for 3 sec
+[Pipeline] echo
+[2025-06-14T09:45:19.228Z] Starting Tomcat...
+[Pipeline] bat
+[2025-06-14T09:45:19.518Z] 
+[2025-06-14T09:45:19.519Z] C:\ProgramData\Jenkins\.jenkins\workspace\TomcatDeployment>"D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\startup.bat"
+[2025-06-14T09:45:19.519Z] Using CATALINA_BASE:   "D:\Apache\Tomcat 9\apache-tomcat-9.0.106"
+[2025-06-14T09:45:19.519Z] Using CATALINA_HOME:   "D:\Apache\Tomcat 9\apache-tomcat-9.0.106"
+[2025-06-14T09:45:19.519Z] Using CATALINA_TMPDIR: "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\temp"
+[2025-06-14T09:45:19.519Z] Using JRE_HOME:        "C:\Program Files\Java\jdk-21"
+[2025-06-14T09:45:19.519Z] Using CLASSPATH:       "D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\bootstrap.jar;D:\Apache\Tomcat 9\apache-tomcat-9.0.106\bin\tomcat-juli.jar"
+[2025-06-14T09:45:19.519Z] Using CATALINA_OPTS:   ""
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+[2025-06-14T09:45:19.727Z] ✅ Pipeline Built and Deployed Successfully!
+[Pipeline] echo
+[2025-06-14T09:45:19.742Z] 🌐 Visit: http://localhost:8080/MyApp/
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
